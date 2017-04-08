@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Please log in with your Active-Directory Account
+  </div>
+  <div class="panel-body">
+    <form class="form-horizontal" [formGroup]="form.formGroup" novalidate>
+      <fieldset>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Login</label>
+          <div class="col-md-8">
+            <input class="form-control" id="nameIdentifierId" type="text" placeholder="User-Login (required)" formControlName="nameIdentifierControl"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Height</label>
+          <div class="col-md-8">
+            <input class="form-control" type="number" placeholder="height" formControlName="heightControl" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Birthdate</label>
+          <div class="col-md-8">
+            <input class="form-control" type="text" placeholder="Birthdate" formControlName="birthdateControl" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Send Newsletter</label>
+          <div class="col-md-8">
+            <input class="form-control" type="checkbox" placeholder="Send Newsletter" formControlName="newsletterControl" />
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+</div>
