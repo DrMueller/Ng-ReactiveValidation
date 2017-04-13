@@ -1,4 +1,4 @@
 export class ValidationError {
-  constructor(errorMessage: string) {
+  constructor(public errorMessage: string) {
   }
 }

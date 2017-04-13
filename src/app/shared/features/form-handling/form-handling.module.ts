@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ValidationDisplayComponent } from './form-validation';
-import { FormBuilderService } from './form-building';
+import { FormValidationService, FormValidationHandler } from './form-validation';
+import { FormBuildingService } from './form-building';
+
+import { FormValidationErrorDisplayComponent } from './form-validation/components';
 
 @NgModule({
   exports: [
-    ValidationDisplayComponent,
+    FormValidationErrorDisplayComponent,
     ReactiveFormsModule,
     FormsModule
   ],
@@ -17,9 +19,11 @@ import { FormBuilderService } from './form-building';
     ReactiveFormsModule
   ],
   providers: [
-    FormBuilderService
+    FormBuildingService,
+    FormValidationService,
+    FormValidationHandler
   ],
-  declarations: [ValidationDisplayComponent]
+  declarations: [FormValidationErrorDisplayComponent]
 })
 
 export class FormHandlingModule { }

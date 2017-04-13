@@ -1,1 +1,1 @@
-export * from './control-validation-errors';
+export * from './form-validation-service';

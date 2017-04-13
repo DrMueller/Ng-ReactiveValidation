@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 
-import { IFormWithValidation, FormBuilderService } from '../../shared/features/form-handling';
+import { IFormWithValidation, FormBuildingService } from '../../shared/features/form-handling/form-building';
+import { FormValidationService } from '../../shared/features/form-handling/form-validation';
 
 @Component({
   selector: 'app-poc',
@@ -9,27 +10,24 @@ import { IFormWithValidation, FormBuilderService } from '../../shared/features/f
   styleUrls: ['./poc.component.css']
 })
 export class PocComponent implements OnInit {
-
   public form: IFormWithValidation;
 
-  constructor(private formBuilder: FormBuilderService,
+  constructor(private formBuildingService: FormBuildingService, private formValidationService: FormValidationService
   ) {
   }
 
   private buildForm(): void {
-    this.form = this.formBuilder.startBuildingFormGroup()
-      .withControl('nameIdentifierControl')
-      .withDefaultValue('MatthasMueller123')
-      .buildControl()
+    this.form = this.formBuildingService.startBuildingFormGroup(this.formValidationService)
       .withControl('heightControl')
       .withDefaultValue(185)
+      .withValidation(Validators.required)
+      .withValidationKey('required')
+      .withErrorMessage('tra')
+      .buildValidationSet()
       .buildControl()
-      .withControl('birthdateControl')
-      .withDefaultValue(new Date(1986, 12, 29))
-      .buildControl()
-      .withControl('newsletterControl')
-      .withDefaultValue(true)
-      .buildControl()
+      .withFormValidationWatcher()
+      .withDebcounceTime(1000)
+      .buildFormWatcher()
       .buildForm();
 
   }
