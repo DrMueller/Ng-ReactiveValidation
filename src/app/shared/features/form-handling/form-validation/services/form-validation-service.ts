@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormValidationHandler } from './handlers';
-import { ValidationAffiliation } from '../../form-building';
-import { FormValidationErrorContainer } from '../models';
+import { FormValidationErrorContainer, ValidationControlErrorsMap } from '../models';
 
 @Injectable()
 export class FormValidationService {
@@ -13,8 +12,8 @@ export class FormValidationService {
     return this.formValidationHandler.validate(formGroup);
   }
 
-  public initialize(validationAffiliations: ValidationAffiliation[]): void {
-    this.formValidationHandler.initialize(validationAffiliations);
+  public initialize(controlErrorsMaps: ValidationControlErrorsMap[]): void {
+    this.formValidationHandler.initialize(controlErrorsMaps);
   }
 }
 

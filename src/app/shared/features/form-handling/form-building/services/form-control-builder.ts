@@ -1,18 +1,17 @@
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
+import { ValidationKeyErrorMap, ValidationControlErrorsMap } from '../../form-validation';
 import { IFormControlBuilder, IRxFormBuilder, IValidationSetBuilder } from '../interfaces';
-import { ValidationSet, ValidationAffiliation } from '../models';
 import { RxFormBuilder, ValidationSetBuilder } from '.';
 
 export class FormControlBuilder implements IFormControlBuilder {
-
-  private validationSets: ValidationSet[] = [];
+  private validationErrorKeyMaps: ValidationKeyErrorMap[] = [];
   private validatorFns: ValidatorFn[] = [];
   private defaultValue: any = null;
 
   constructor(
     private controlName: string,
-    private validationAffiliations: ValidationAffiliation[],
+    private controlErrorsMaps: ValidationControlErrorsMap[],
     private formGroup: FormGroup,
     private formBuilder: RxFormBuilder) {
   }
@@ -30,15 +29,16 @@ export class FormControlBuilder implements IFormControlBuilder {
 
   public withValidation(validatorFn: ValidatorFn): IValidationSetBuilder {
     this.validatorFns.push(validatorFn);
-    const validationRuleBuilder = new ValidationSetBuilder(this.validationSets, this);
+    const validationRuleBuilder = new ValidationSetBuilder(this.validationErrorKeyMaps, this);
     return validationRuleBuilder;
   }
 
   private createAndPushValidationAffiliation() {
-    const va = new ValidationAffiliation(
+    const va = new ValidationControlErrorsMap(
       this.controlName,
-      this.validationSets);
-    this.validationAffiliations.push(va);
+      this.validationErrorKeyMaps);
+
+    this.controlErrorsMaps.push(va);
   }
 
   private createAndAddFormControl() {

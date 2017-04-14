@@ -1,6 +1,3 @@
-Optional Type
-AbstractControl
-Split and describe models properly to either define errors or return them
-Rework naming
-
+Describe every model class a bit
+Lint
 2 interfaces for FormWithValidation, 1 for client one for service to set errors

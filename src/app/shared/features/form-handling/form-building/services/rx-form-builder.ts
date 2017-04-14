@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
-import { FormValidationService } from '../../form-validation';
-import { ValidationAffiliation } from '../../form-building';
-import { FormWithValidation } from '../../shared';
+import { FormValidationService, FormWithValidation, ValidationControlErrorsMap } from '../../form-validation';
 import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
 import { FormControlBuilder, FormWatchingBuilder } from '.';
 
@@ -11,14 +9,14 @@ import { FormControlBuilder, FormWatchingBuilder } from '.';
 export class RxFormBuilder implements IRxFormBuilder {
   private formWithValidation: FormWithValidation;
   private formValidationService: FormValidationService;
-  private validationAffiliations: ValidationAffiliation[];
+  private controlErrorsMaps: ValidationControlErrorsMap[];
 
   constructor(private formBuilder: FormBuilder) {
   }
 
   public startBuildingFormGroup(formValidationService: FormValidationService): IRxFormBuilder {
     this.formValidationService = formValidationService;
-    this.validationAffiliations = [];
+    this.controlErrorsMaps = [];
 
     this.formWithValidation = new FormWithValidation(this.formBuilder.group({}));
 
@@ -26,12 +24,12 @@ export class RxFormBuilder implements IRxFormBuilder {
   }
 
   public withControl(controlName: string): IFormControlBuilder {
-    const formControlBuilder = new FormControlBuilder(controlName, this.validationAffiliations, this.formWithValidation.formGroup, this);
+    const formControlBuilder = new FormControlBuilder(controlName, this.controlErrorsMaps, this.formWithValidation.formGroup, this);
     return formControlBuilder;
   }
 
   public buildForm(): FormWithValidation {
-    this.formValidationService.initialize(this.validationAffiliations);
+    this.formValidationService.initialize(this.controlErrorsMaps);
     return this.formWithValidation;
   }
 

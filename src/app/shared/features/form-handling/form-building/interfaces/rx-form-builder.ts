@@ -1,6 +1,5 @@
-import { FormWithValidation } from '../../shared';
 import { IFormControlBuilder, IFormWatchingBuilder } from '.';
-import { FormValidationService } from '../../form-validation';
+import { FormValidationService, FormWithValidation } from '../../form-validation';
 
 export interface IRxFormBuilder {
   startBuildingFormGroup(formValidationService: FormValidationService): IRxFormBuilder;

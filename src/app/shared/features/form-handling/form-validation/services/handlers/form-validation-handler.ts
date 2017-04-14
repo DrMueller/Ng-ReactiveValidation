@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
-import { FormValidationErrorContainer, ValidationError, ControlValidationErrorContainer } from '../..';
-import { ValidationAffiliation, ValidationSet } from '../../../form-building';
+import {
+  FormValidationErrorContainer,
+  ValidationError,
+  ControlValidationErrorContainer,
+  ValidationControlErrorsMap
+} from '../..';
 
 @Injectable()
 export class FormValidationHandler {
-  private validationAffiliations: ValidationAffiliation[];
+  private controlErrorsMaps: ValidationControlErrorsMap[];
 
   constructor() { }
 
-  public initialize(validationAffiliations: ValidationAffiliation[]): void {
-    this.validationAffiliations = validationAffiliations;
+  public initialize(controlErrorsMaps: ValidationControlErrorsMap[]): void {
+    this.controlErrorsMaps = controlErrorsMaps;
   }
 
   public validate(formGroup: FormGroup): FormValidationErrorContainer {
@@ -34,14 +38,9 @@ export class FormValidationHandler {
     const control = formGroup.controls[controlName];
     const controlErorrKeys = this.getControlErrorKeys(control);
     if (controlErorrKeys) {
-      const validationAffiliation = this.validationAffiliations.find(f => f.controlName === controlName);
-      if (validationAffiliation) {
-        // tslint:disable-next-line:max-line-length
-        const validationErrors = validationAffiliation.validationSets.filter(f => controlErorrKeys.some(rk => rk === f.validationKey)).map((v: ValidationSet) => {
-          return v.validationError;
-        });
-
-        return validationErrors;
+      const controlErrorsMap = this.controlErrorsMaps.find(f => f.controlName === controlName);
+      if (controlErrorsMap) {
+        return controlErrorsMap.getValidationErrors(controlErorrKeys);
       }
     }
 

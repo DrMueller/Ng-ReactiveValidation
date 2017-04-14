@@ -1,28 +1,27 @@
 import { ValidatorFn } from '@angular/forms';
 
 import { IValidationSetBuilder, IFormControlBuilder } from '../interfaces';
-import { ValidationError } from '../../form-validation';
-import { ValidationSet } from '../models';
+import { ValidationError, ValidationKeyErrorMap } from '../../form-validation';
 
 export class ValidationSetBuilder implements IValidationSetBuilder {
-  private readonly validationSet: ValidationSet;
+  private readonly keyErrorMap: ValidationKeyErrorMap;
 
-  constructor(private validationSets: ValidationSet[], private formControlBuilder: IFormControlBuilder) {
-    this.validationSet = new ValidationSet();
+  constructor(private keyErrorMaps: ValidationKeyErrorMap[], private formControlBuilder: IFormControlBuilder) {
+    this.keyErrorMap = new ValidationKeyErrorMap();
   }
 
   public withErrorMessage(errorMessage: string): IValidationSetBuilder {
-    this.validationSet.validationError = new ValidationError(errorMessage);
+    this.keyErrorMap.validationError = new ValidationError(errorMessage);
     return this;
   }
 
   public withValidationKey(validationKey: string): IValidationSetBuilder {
-    this.validationSet.validationKey = validationKey;
+    this.keyErrorMap.validationKey = validationKey;
     return this;
   }
 
   public buildValidationSet(): IFormControlBuilder {
-    this.validationSets.push(this.validationSet);
+    this.keyErrorMaps.push(this.keyErrorMap);
     return this.formControlBuilder;
   }
 }
