@@ -1,9 +1,9 @@
 import { ValidatorFn } from '@angular/forms';
 
-import { IFormBuildingService, IValidationSetBuilder } from '.';
+import { IRxFormBuilder, IValidationSetBuilder } from '.';
 
 export interface IFormControlBuilder {
-  buildControl(): IFormBuildingService;
+  buildControl(): IRxFormBuilder;
   withDefaultValue(value: any): IFormControlBuilder;
   withValidation(validatorFn: ValidatorFn): IValidationSetBuilder;
 }

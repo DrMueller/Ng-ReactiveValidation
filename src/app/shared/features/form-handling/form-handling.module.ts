@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FormValidationService, FormValidationHandler } from './form-validation';
-import { FormBuildingService } from './form-building';
+import { RxFormBuilder } from './form-building';
 
 import { FormValidationErrorDisplayComponent } from './form-validation/components';
 
@@ -19,7 +19,7 @@ import { FormValidationErrorDisplayComponent } from './form-validation/component
     ReactiveFormsModule
   ],
   providers: [
-    FormBuildingService,
+    RxFormBuilder,
     FormValidationService,
     FormValidationHandler
   ],

@@ -1,9 +1,8 @@
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 
-import { FormBuildingService, ValidationSetBuilder } from '.';
-import { IFormControlBuilder, IFormBuildingService, IValidationSetBuilder } from '../interfaces';
-import { ValidationRule, FormValidationService, ControlValidationErrorContainer } from '../../form-validation';
+import { IFormControlBuilder, IRxFormBuilder, IValidationSetBuilder } from '../interfaces';
 import { ValidationSet, ValidationAffiliation } from '../models';
+import { RxFormBuilder, ValidationSetBuilder } from '.';
 
 export class FormControlBuilder implements IFormControlBuilder {
 
@@ -15,10 +14,10 @@ export class FormControlBuilder implements IFormControlBuilder {
     private controlName: string,
     private validationAffiliations: ValidationAffiliation[],
     private formGroup: FormGroup,
-    private formBuilder: IFormBuildingService) {
+    private formBuilder: RxFormBuilder) {
   }
 
-  public buildControl(): IFormBuildingService {
+  public buildControl(): IRxFormBuilder {
     this.createAndAddFormControl();
     this.createAndPushValidationAffiliation();
     return this.formBuilder;

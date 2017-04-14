@@ -1,6 +1,6 @@
-import { IFormBuildingService } from '.';
+import { IRxFormBuilder } from '.';
 
 export interface IFormWatchingBuilder {
   withDebcounceTime(debounceMilliseconds: number): IFormWatchingBuilder;
-  buildFormWatcher(): IFormBuildingService;
+  buildFormWatcher(): IRxFormBuilder;
 }

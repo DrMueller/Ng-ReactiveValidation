@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { FormValidationHandler } from './handlers';
-import { IFormWithValidation, ValidationAffiliation } from '../../form-building';
-import {  FormValidationErrorContainer } from '../models';
+import { ValidationAffiliation } from '../../form-building';
+import { FormValidationErrorContainer } from '../models';
 
 @Injectable()
 export class FormValidationService {

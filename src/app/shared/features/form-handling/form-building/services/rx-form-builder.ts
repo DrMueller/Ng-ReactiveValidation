@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
-import { IFormBuildingService, IFormControlBuilder } from '../interfaces';
-import { IFormWithValidation, IFormWatchingBuilder } from '../interfaces';
 import { FormValidationService } from '../../form-validation';
 import { ValidationAffiliation } from '../../form-building';
-import { FormControlBuilder, FormWatchingBuilder } from '.';
 import { FormWithValidation } from '../models';
-
+import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
+import { FormControlBuilder, FormWatchingBuilder } from '.';
 
 @Injectable()
-export class FormBuildingService implements IFormBuildingService {
-  private formWithValidation: IFormWithValidation;
+export class RxFormBuilder implements IRxFormBuilder {
+  private formWithValidation: FormWithValidation;
   private formValidationService: FormValidationService;
   private validationAffiliations: ValidationAffiliation[];
 
   constructor(private formBuilder: FormBuilder) {
   }
 
-  public startBuildingFormGroup(formValidationService: FormValidationService): IFormBuildingService {
+  public startBuildingFormGroup(formValidationService: FormValidationService): IRxFormBuilder {
     this.formValidationService = formValidationService;
     this.validationAffiliations = [];
 
@@ -32,7 +30,7 @@ export class FormBuildingService implements IFormBuildingService {
     return formControlBuilder;
   }
 
-  public buildForm(): IFormWithValidation {
+  public buildForm(): FormWithValidation {
     this.formValidationService.initialize(this.validationAffiliations);
     return this.formWithValidation;
   }

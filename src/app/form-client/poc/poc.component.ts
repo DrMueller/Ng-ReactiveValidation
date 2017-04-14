@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 
-import { IFormWithValidation, FormBuildingService } from '../../shared/features/form-handling/form-building';
+import { FormWithValidation, RxFormBuilder } from '../../shared/features/form-handling/form-building';
 import { FormValidationService } from '../../shared/features/form-handling/form-validation';
 import { StringValidatorFactory, KeyNames } from '../../shared/features/form-handling/validators';
 
@@ -11,14 +11,13 @@ import { StringValidatorFactory, KeyNames } from '../../shared/features/form-han
   styleUrls: ['./poc.component.css']
 })
 export class PocComponent implements OnInit {
-  public form: IFormWithValidation;
+  public form: FormWithValidation;
 
-  constructor(private formBuildingService: FormBuildingService, private formValidationService: FormValidationService
-  ) {
+  constructor(private rxFormBuilder: RxFormBuilder, private formValidationService: FormValidationService) {
   }
 
   private buildForm(): void {
-    this.form = this.formBuildingService.startBuildingFormGroup(this.formValidationService)
+    this.form = this.rxFormBuilder.startBuildingFormGroup(this.formValidationService)
       .withControl('heightControl')
       .withDefaultValue(185)
       .withValidation(Validators.required)

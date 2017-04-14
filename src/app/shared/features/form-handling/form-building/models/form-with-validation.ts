@@ -1,9 +1,8 @@
 import { FormGroup } from '@angular/forms';
 
-import { IFormWithValidation } from '../interfaces';
 import { ControlValidationErrorContainer, ValidationError, FormValidationErrorContainer } from '../../form-validation';
 
-export class FormWithValidation implements IFormWithValidation {
+export class FormWithValidation {
   public formValidationErrorContainer: FormValidationErrorContainer = FormValidationErrorContainer.nullObject;
 
   constructor(private _formGroup: FormGroup) {

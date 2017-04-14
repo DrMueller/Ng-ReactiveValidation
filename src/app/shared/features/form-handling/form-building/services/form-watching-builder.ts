@@ -1,15 +1,16 @@
 import { FormGroup } from '@angular/forms';
 
-import { IFormWatchingBuilder, IFormBuildingService, IFormWithValidation } from '../interfaces';
 import { FormValidationService } from '../../form-validation';
+import { IFormWatchingBuilder, IRxFormBuilder } from '../interfaces';
+import { FormWithValidation } from '../models';
 
 export class FormWatchingBuilder implements IFormWatchingBuilder {
   private debounceMilliseconds = 0;
 
   constructor(
-    private formWithValidation: IFormWithValidation,
+    private formWithValidation: FormWithValidation,
     private formValidationService: FormValidationService,
-    private formBuildingService: IFormBuildingService) {
+    private formBuildingService: IRxFormBuilder) {
   }
 
   withDebcounceTime(debounceMilliseconds: number): IFormWatchingBuilder {
@@ -17,7 +18,7 @@ export class FormWatchingBuilder implements IFormWatchingBuilder {
     return this;
   }
 
-  buildFormWatcher(): IFormBuildingService {
+  buildFormWatcher(): IRxFormBuilder {
     this.formWithValidation.formGroup.valueChanges.debounceTime(this.debounceMilliseconds).subscribe(() => {
       this.formWithValidation.formValidationErrorContainer = this.formValidationService.validate(this.formWithValidation.formGroup);
     });
