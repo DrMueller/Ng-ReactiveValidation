@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 
-import { FormWithValidation, RxFormBuilder } from '../../shared/features/form-handling/form-building';
-import { FormValidationService } from '../../shared/features/form-handling/form-validation';
-import { StringValidatorFactory, KeyNames } from '../../shared/features/form-handling/validators';
+import {
+  RxFormBuilder,
+  FormWithValidation,
+  FormValidationService,
+  StringValidatorFactory,
+  KeyNames
+} from '../../shared/features/form-handling';
 
 @Component({
   selector: 'app-poc',
@@ -36,7 +40,7 @@ export class PocComponent implements OnInit {
       .buildValidationSet()
       .buildControl()
       .withControl('birthdateControl')
-      .withDefaultValue(Date.now().toLocaleString())
+      .withDefaultValue(new Date().toLocaleDateString())
       .buildControl()
       .withControl('newsletterControl')
       .buildControl()

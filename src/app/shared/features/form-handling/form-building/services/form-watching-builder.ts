@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 
 import { FormValidationService } from '../../form-validation';
 import { IFormWatchingBuilder, IRxFormBuilder } from '../interfaces';
-import { FormWithValidation } from '../models';
+import { FormWithValidation } from '../../shared';
 
 export class FormWatchingBuilder implements IFormWatchingBuilder {
   private debounceMilliseconds = 0;

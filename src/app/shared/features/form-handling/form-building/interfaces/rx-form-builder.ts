@@ -1,4 +1,4 @@
-import { FormWithValidation } from '../models';
+import { FormWithValidation } from '../../shared';
 import { IFormControlBuilder, IFormWatchingBuilder } from '.';
 import { FormValidationService } from '../../form-validation';
 

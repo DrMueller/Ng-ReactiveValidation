@@ -1,4 +1,5 @@
-export { FormWithValidation } from './form-building';
 export * from './form-handling.module';
-export * from './form-validation';
+export { RxFormBuilder } from './form-building';
+export { FormValidationService } from './form-validation';
 export * from './validators';
+export { FormWithValidation } from './shared';

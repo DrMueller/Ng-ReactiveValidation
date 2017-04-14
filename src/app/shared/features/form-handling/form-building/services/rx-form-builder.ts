@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 
 import { FormValidationService } from '../../form-validation';
 import { ValidationAffiliation } from '../../form-building';
-import { FormWithValidation } from '../models';
+import { FormWithValidation } from '../../shared';
 import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
 import { FormControlBuilder, FormWatchingBuilder } from '.';
 
