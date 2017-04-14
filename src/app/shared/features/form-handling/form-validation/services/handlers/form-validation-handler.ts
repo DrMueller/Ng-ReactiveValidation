@@ -35,7 +35,6 @@ export class FormValidationHandler {
     const controlErorrKeys = this.getControlErrorKeys(control);
     if (controlErorrKeys) {
       const validationAffiliation = this.validationAffiliations.find(f => f.controlName === controlName);
-
       if (validationAffiliation) {
         // tslint:disable-next-line:max-line-length
         const validationErrors = validationAffiliation.validationSets.filter(f => controlErorrKeys.some(rk => rk === f.validationKey)).map((v: ValidationSet) => {

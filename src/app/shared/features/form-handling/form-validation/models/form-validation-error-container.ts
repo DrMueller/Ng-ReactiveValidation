@@ -7,7 +7,6 @@ export class FormValidationErrorContainer {
   public find(controlName: string): ControlValidationErrorContainer {
     const controlValidation = this.controlValidationErrorContainers.find(f => f.controlName === controlName);
     if (controlValidation) {
-      debugger;
       return controlValidation;
     }
 
