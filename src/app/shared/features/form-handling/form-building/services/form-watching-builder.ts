@@ -1,6 +1,7 @@
 import { FormGroup } from '@angular/forms';
 
-import { FormValidationService, FormWithValidation } from '../../form-validation';
+import { FormWithValidation } from '../../form-validation/models/definitions/implementation';
+import { FormValidationService } from '../../form-validation';
 import { IFormWatchingBuilder, IRxFormBuilder } from '../interfaces';
 
 export class FormWatchingBuilder implements IFormWatchingBuilder {

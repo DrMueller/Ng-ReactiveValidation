@@ -14,5 +14,4 @@ export class FormValidationErrorDisplayComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
