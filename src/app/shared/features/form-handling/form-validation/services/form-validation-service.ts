@@ -8,12 +8,11 @@ import { FormValidationErrorContainer, ValidationControlErrorsMap } from '../mod
 export class FormValidationService {
   constructor(private formValidationHandler: FormValidationHandler) { }
 
-  public validate(formGroup: FormGroup): FormValidationErrorContainer {
-    return this.formValidationHandler.validate(formGroup);
-  }
-
   public initialize(controlErrorsMaps: ValidationControlErrorsMap[]): void {
     this.formValidationHandler.initialize(controlErrorsMaps);
   }
-}
 
+  public validate(formGroup: FormGroup): FormValidationErrorContainer {
+    return this.formValidationHandler.validate(formGroup);
+  }
+}

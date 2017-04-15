@@ -1,5 +1,6 @@
 import { ControlValidationErrorContainer } from '.';
 
+// Returns a collection of validation errors for a Form, grouped by each Control
 export class FormValidationErrorContainer {
   public constructor(private controlValidationErrorContainers: ControlValidationErrorContainer[]) {
   }

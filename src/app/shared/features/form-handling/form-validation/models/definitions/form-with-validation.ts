@@ -2,7 +2,6 @@ import { FormGroup } from '@angular/forms';
 
 import { ControlValidationErrorContainer, ValidationError, FormValidationErrorContainer } from '../';
 
-// Used by the builders
 // Asset from the form-building workflow, handles the incoming errors and passes it to the component
 // Also holds the formGroup in order to only have to manage one object per component for validation and form-handling
 

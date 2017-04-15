@@ -1,7 +1,6 @@
 import { ValidationKeyErrorMap } from '.';
 import { ValidationError } from '../';
 
-// Used by the builders
 // Maps a Control via its name to a set of Validations
 export class ValidationControlErrorsMap {
   public constructor(
