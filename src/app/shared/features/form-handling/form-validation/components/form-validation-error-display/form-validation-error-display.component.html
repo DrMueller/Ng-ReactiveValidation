@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let validationError of errorContainer.validationErrors">
-    {{ validationError.errorMessage }}
-  </li>
-</ul>
+<div class="help-block">
+  <ul class="app-error-list">
+    <li *ngFor="let validationError of errorContainer.validationErrors">
+      {{ validationError.errorMessage }}
+    </li>
+  </ul>
+</div>

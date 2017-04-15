@@ -4,4 +4,5 @@ import { ControlValidationErrorContainer } from '..';
 export interface IFormWithValidation {
   formGroup: FormGroup;
   getControlErrorContainer(controlName: string): ControlValidationErrorContainer;
+  hasControlValidationErrors(controlName: string): boolean;
 }

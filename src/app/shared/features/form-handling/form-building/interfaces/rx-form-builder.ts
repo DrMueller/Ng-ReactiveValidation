@@ -1,8 +1,8 @@
 import { IFormControlBuilder, IFormWatchingBuilder } from '.';
-import { FormValidationService, FormWithValidation } from '../../form-validation';
+import { FormValidationService, IFormWithValidation } from '../../form-validation';
 
 export interface IRxFormBuilder {
-  buildForm(): FormWithValidation;
+  buildForm(): IFormWithValidation;
   startBuildingFormGroup(formValidationService: FormValidationService): IRxFormBuilder;
   withControl(controlName: string): IFormControlBuilder;
   withFormValidationWatcher(): IFormWatchingBuilder;
