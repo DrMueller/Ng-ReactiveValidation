@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 import { FormValidationHandler } from './handlers';
 import { FormValidationErrorContainer, ValidationControlErrorsMap } from '../models';
+import { ValidationCallback } from '../types';
 
 @Injectable()
 export class FormValidationService {

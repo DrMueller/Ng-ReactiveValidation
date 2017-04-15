@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
-import { FormValidationService, FormWithValidation, ValidationControlErrorsMap } from '../../form-validation';
+import { FormValidationService, IFormWithValidation, ValidationControlErrorsMap } from '../../form-validation';
+import { FormWithValidation } from '../../form-validation/models/definitions/implementation';
+
 import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
 import { FormControlBuilder, FormWatchingBuilder } from '.';
 
@@ -17,7 +19,6 @@ export class RxFormBuilder implements IRxFormBuilder {
   public startBuildingFormGroup(formValidationService: FormValidationService): IRxFormBuilder {
     this.formValidationService = formValidationService;
     this.controlErrorsMaps = [];
-
     this.formWithValidation = new FormWithValidation(this.formBuilder.group({}));
 
     return this;
@@ -28,7 +29,7 @@ export class RxFormBuilder implements IRxFormBuilder {
     return formControlBuilder;
   }
 
-  public buildForm(): FormWithValidation {
+  public buildForm(): IFormWithValidation {
     this.formValidationService.initialize(this.controlErrorsMaps);
     return this.formWithValidation;
   }

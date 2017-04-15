@@ -3,7 +3,7 @@ import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import {
   RxFormBuilder,
-  FormWithValidation,
+  IFormWithValidation,
   FormValidationService,
   StringValidatorFactory,
   KeyNames
@@ -15,7 +15,7 @@ import {
   styleUrls: ['./poc.component.css']
 })
 export class PocComponent implements OnInit {
-  public form: FormWithValidation;
+  public form: IFormWithValidation;
 
   constructor(private rxFormBuilder: RxFormBuilder, private formValidationService: FormValidationService) {
   }
