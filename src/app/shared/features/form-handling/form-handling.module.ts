@@ -5,11 +5,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormValidationService, FormValidationHandler } from './form-validation';
 import { RxFormBuilder } from './form-building';
 
-import { FormValidationErrorDisplayComponent } from './form-validation/components';
+import { FormValidationErrorDisplayComponent, FormControlComponent } from './form-validation/components';
 
 @NgModule({
   exports: [
-    FormValidationErrorDisplayComponent,
+    FormControlComponent,
     ReactiveFormsModule,
     FormsModule
   ],
@@ -23,7 +23,9 @@ import { FormValidationErrorDisplayComponent } from './form-validation/component
     FormValidationService,
     FormValidationHandler
   ],
-  declarations: [FormValidationErrorDisplayComponent]
+  declarations: [
+    FormValidationErrorDisplayComponent,
+    FormControlComponent]
 })
 
 export class FormHandlingModule { }

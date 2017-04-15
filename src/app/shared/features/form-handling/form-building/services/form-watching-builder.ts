@@ -8,7 +8,7 @@ export class FormWatchingBuilder implements IFormWatchingBuilder {
   private debounceMilliseconds = 0;
 
   constructor(
-    private formWithValidation: FormWithValidation,
+    private formGroup: FormGroup,
     private formValidationService: FormValidationService,
     private formBuildingService: IRxFormBuilder) {
   }
@@ -19,8 +19,8 @@ export class FormWatchingBuilder implements IFormWatchingBuilder {
   }
 
   buildFormWatcher(): IRxFormBuilder {
-    this.formWithValidation.formGroup.valueChanges.debounceTime(this.debounceMilliseconds).subscribe(() => {
-      this.formWithValidation.formValidationErrorContainer = this.formValidationService.validate(this.formWithValidation.formGroup);
+    this.formGroup.valueChanges.debounceTime(this.debounceMilliseconds).subscribe(() => {
+      this.formValidationService.validate();
     });
 
     return this.formBuildingService;

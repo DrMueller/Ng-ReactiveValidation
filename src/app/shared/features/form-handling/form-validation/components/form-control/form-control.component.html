@@ -1,0 +1,13 @@
+<div [formGroup]="formGroup">
+  <div class="form-group">
+    <div [class.has-error]="validatedControl.hasErrors">
+      <div class="row">
+        <ng-content select=".form__contentselector--body">
+        </ng-content>
+      </div>
+      <div class="row">
+        <app-form-validation-error-display [errorContainer]="validatedControl.errorContainer"></app-form-validation-error-display>
+      </div>
+    </div>
+  </div>
+</div>

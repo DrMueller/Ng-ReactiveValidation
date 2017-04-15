@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 
 import {
-  FormValidationErrorContainer,
+  ValidatedForm,
+  ValidatedControl,
   ValidationError,
   ControlValidationErrorContainer,
   ValidationControlErrorsMap
@@ -11,31 +12,26 @@ import {
 @Injectable()
 export class FormValidationHandler {
   private controlErrorsMaps: ValidationControlErrorsMap[];
+  private formGroup: FormGroup;
+  private validatedForm: ValidatedForm;
 
-  constructor() { }
-
-  public initialize(controlErrorsMaps: ValidationControlErrorsMap[]): void {
+  public initialize(formGroup: FormGroup, controlErrorsMaps: ValidationControlErrorsMap[], validatedForm: ValidatedForm): void {
     this.controlErrorsMaps = controlErrorsMaps;
+    this.formGroup = formGroup;
+    this.validatedForm = validatedForm;
   }
 
-  public validate(formGroup: FormGroup): FormValidationErrorContainer {
-    const controlValidationErrorContainers: ControlValidationErrorContainer[] = [];
-
-    for (const controlName in formGroup.controls) {
-      if (formGroup.controls.hasOwnProperty(controlName)) {
-        const validationErrors = this.getControlValidationErrors(formGroup, controlName);
-        if (validationErrors) {
-          controlValidationErrorContainers.push(new ControlValidationErrorContainer(controlName, validationErrors));
-        }
+  public validate(): void {
+    for (const controlName in this.formGroup.controls) {
+      if (this.formGroup.controls.hasOwnProperty(controlName)) {
+        const validationErrors = this.getControlValidationErrors(controlName);
+        this.validatedForm.setControlValidationErrors(controlName, validationErrors);
       }
     }
-
-    const result = new FormValidationErrorContainer(controlValidationErrorContainers);
-    return result;
   }
 
-  private getControlValidationErrors(formGroup: FormGroup, controlName: string): ValidationError[] | null {
-    const control = formGroup.controls[controlName];
+  private getControlValidationErrors(controlName: string): ValidationError[] {
+    const control = this.formGroup.controls[controlName];
     const controlErorrKeys = this.getControlErrorKeys(control);
     if (controlErorrKeys) {
       const controlErrorsMap = this.controlErrorsMaps.find(f => f.controlName === controlName);
@@ -44,7 +40,7 @@ export class FormValidationHandler {
       }
     }
 
-    return null;
+    return [];
   }
 
   private getControlErrorKeys(control: AbstractControl): string[] | undefined {

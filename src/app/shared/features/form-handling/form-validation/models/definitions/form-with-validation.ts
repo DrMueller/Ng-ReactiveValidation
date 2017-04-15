@@ -1,8 +1,7 @@
 import { FormGroup } from '@angular/forms';
-import { ControlValidationErrorContainer } from '..';
+import { ValidatedControl } from '..';
 
 export interface IFormWithValidation {
   formGroup: FormGroup;
-  getControlErrorContainer(controlName: string): ControlValidationErrorContainer;
-  hasControlValidationErrors(controlName: string): boolean;
+  getValidatedControl(controlName: string): ValidatedControl;
 }
