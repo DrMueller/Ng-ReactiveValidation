@@ -3,10 +3,11 @@ import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms'
 import { ValidationKeyErrorMap, ValidationControlErrorsMap } from '../../form-validation';
 import { IFormControlBuilder, IRxFormBuilder, IValidationKeyErrorMapBuilder } from '../interfaces';
 import { RxFormBuilder, ValidationKeyErrorMapBuilder } from '.';
+import { IValidator } from '../../validators';
 
 export class FormControlBuilder implements IFormControlBuilder {
   private validationErrorKeyMaps: ValidationKeyErrorMap[] = [];
-  private validatorFns: ValidatorFn[] = [];
+  private validators: IValidator[] = [];
   private defaultValue: any = null;
 
   constructor(
@@ -18,7 +19,7 @@ export class FormControlBuilder implements IFormControlBuilder {
 
   public buildControl(): IRxFormBuilder {
     this.createAndAddFormControl();
-    this.createAndPushValidationAffiliation();
+    this.createAndPushValidationErrorMap();
     return this.formBuilder;
   }
 
@@ -27,13 +28,13 @@ export class FormControlBuilder implements IFormControlBuilder {
     return this;
   }
 
-  public withValidation(validatorFn: ValidatorFn): IValidationKeyErrorMapBuilder {
-    this.validatorFns.push(validatorFn);
-    const validationRuleBuilder = new ValidationKeyErrorMapBuilder(this.validationErrorKeyMaps, this);
+  public withValidation(validator: IValidator): IValidationKeyErrorMapBuilder {
+    this.validators.push(validator);
+    const validationRuleBuilder = new ValidationKeyErrorMapBuilder(this.validationErrorKeyMaps, validator, this);
     return validationRuleBuilder;
   }
 
-  private createAndPushValidationAffiliation() {
+  private createAndPushValidationErrorMap() {
     const va = new ValidationControlErrorsMap(
       this.controlName,
       this.validationErrorKeyMaps);
@@ -48,7 +49,9 @@ export class FormControlBuilder implements IFormControlBuilder {
       onlySelf: true
     });
 
-    formControl.setValidators(this.validatorFns);
+    const validatorFunctions = this.validators.map(f => f.createFunc());
+    formControl.setValidators(validatorFunctions);
+
     this.formGroup.addControl(this.controlName, formControl);
   }
 }

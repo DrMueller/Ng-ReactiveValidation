@@ -9,13 +9,15 @@ import { FormHandlingModule } from './shared/features/form-handling';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    FormClientModule
+    FormClientModule,
+    FormHandlingModule.forRoot()
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

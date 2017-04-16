@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { FormValidationService, FormValidationHandler } from './form-validation';
 import { RxFormBuilder } from './form-building';
+import { ValidatorFactoryService } from './validators';
+import { OpaqueTokens } from './validators/infrastructure';
+import { ValidatorProviderFactory } from './validators/provisioning';
 
 import { FormValidationErrorDisplayComponent, FormControlComponent } from './form-validation/components';
 
@@ -21,11 +24,26 @@ import { FormValidationErrorDisplayComponent, FormControlComponent } from './for
   providers: [
     RxFormBuilder,
     FormValidationService,
-    FormValidationHandler
+    FormValidationHandler,
+    ValidatorFactoryService
   ],
   declarations: [
     FormValidationErrorDisplayComponent,
-    FormControlComponent]
+    FormControlComponent
+  ]
 })
 
-export class FormHandlingModule { }
+export class FormHandlingModule {
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: FormHandlingModule,
+      providers: [
+        ValidatorProviderFactory.create(),
+        RxFormBuilder,
+        FormValidationService,
+        FormValidationHandler,
+        ValidatorFactoryService
+      ]
+    };
+  }
+}

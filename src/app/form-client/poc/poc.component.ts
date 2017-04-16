@@ -5,8 +5,7 @@ import {
   RxFormBuilder,
   IFormWithValidation,
   FormValidationService,
-  StringValidatorFactory,
-  KeyNames
+  ValidatorFactoryService
 } from '../../shared/features/form-handling';
 
 @Component({
@@ -17,19 +16,19 @@ import {
 export class PocComponent implements OnInit {
   public form: IFormWithValidation;
 
-  constructor(private rxFormBuilder: RxFormBuilder, private formValidationService: FormValidationService) {
+  constructor(
+    private rxFormBuilder: RxFormBuilder,
+    private formValidationService: FormValidationService,
+    private validatoryFactory: ValidatorFactoryService) {
   }
 
   private buildForm(): void {
     this.form = this.rxFormBuilder.startBuildingFormGroup(this.formValidationService)
       .withControl('nameIdentifierControl')
-      .withValidation(StringValidatorFactory.create('test1234'))
-      .withValidationKey(KeyNames.stringMissmatch)
-      .withErrorMessage('Text is NOT test1234')
+      .withValidation(this.validatoryFactory.minLenght(50))
+      .withCustomErrorMessage('Min Length custom error message')
       .buildValidationKeyErrorMap()
-      .withValidation(Validators.maxLength(10))
-      .withValidationKey(KeyNames.maxLength)
-      .withErrorMessage('Length is too large')
+      .withValidation(this.validatoryFactory.stringMatch('test1234'))
       .buildValidationKeyErrorMap()
       .buildControl()
       .withFormValidationWatcher()
@@ -37,36 +36,6 @@ export class PocComponent implements OnInit {
       .buildFormWatcher()
       .buildForm();
   }
-
-  // private buildForm(): void {
-  //   this.form = this.rxFormBuilder.startBuildingFormGroup(this.formValidationService)
-  //     .withControl('heightControl')
-  //     .withDefaultValue(185)
-  //     .withValidation(Validators.required)
-  //     .withValidationKey(KeyNames.required)
-  //     .withErrorMessage('tra')
-  //     .buildValidationKeyErrorMap()
-  //     .buildControl()
-  //     .withControl('nameIdentifierControl')
-  //     .withValidation(StringValidatorFactory.create('test1234'))
-  //     .withValidationKey(KeyNames.stringMissmatch)
-  //     .withErrorMessage('Text is NOT test1234')
-  //     .buildValidationKeyErrorMap()
-  //     .withValidation(Validators.maxLength(10))
-  //     .withValidationKey(KeyNames.maxLength)
-  //     .withErrorMessage('Length is too large')
-  //     .buildValidationKeyErrorMap()
-  //     .buildControl()
-  //     .withControl('birthdateControl')
-  //     .withDefaultValue(new Date().toLocaleDateString())
-  //     .buildControl()
-  //     .withControl('newsletterControl')
-  //     .buildControl()
-  //     .withFormValidationWatcher()
-  //     .withDebcounceTime(1000)
-  //     .buildFormWatcher()
-  //     .buildForm();
-  // }
 
   ngOnInit() {
     this.buildForm();
