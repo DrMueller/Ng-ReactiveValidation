@@ -4,7 +4,6 @@ import { IValidator, IValidatorFunctionResult } from '..';
 
 export class StringMatchValidator implements IValidator {
   public static key = 'stringmatch';
-
   private _check: string;
 
   public createFunc(): ValidatorFn {
