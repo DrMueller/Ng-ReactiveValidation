@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 
 import { IValidator } from '.';
-import { OpaqueTokens } from '../infrastructure';
+import { ValidatorProviderFactory } from '../provisioning/valdidator-provider-factory';
 import * as v from './validator-implementations';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class ValidatorFactoryService {
     return this.getByKey(v.StringMatchValidator.key, match);
   }
 
-  constructor( @Inject(OpaqueTokens.APP_VALIDATOR_TOKEN) private validators: IValidator[]) { }
+  constructor( @Inject(ValidatorProviderFactory.APP_VALIDATOR_TOKEN) private validators: IValidator[]) { }
 
   public getByKey(key: string, ...funcArgs: any[]): IValidator {
     const result = this.validators.find(f => f.key === key);

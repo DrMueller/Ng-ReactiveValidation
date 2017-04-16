@@ -3,12 +3,11 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 
 import {
   FormValidationService,
-  IFormWithValidation,
+  FormWithValidation,
   ValidationControlErrorsMap,
   ValidatedForm,
   ValidatedControl
 } from '../../form-validation';
-import { FormWithValidation } from '../../form-validation/models/definitions/implementation';
 
 import { IRxFormBuilder, IFormControlBuilder, IFormWatchingBuilder } from '../interfaces';
 import { FormControlBuilder, FormWatchingBuilder } from '.';
@@ -38,7 +37,7 @@ export class RxFormBuilder implements IRxFormBuilder {
     return formControlBuilder;
   }
 
-  public buildForm(): IFormWithValidation {
+  public buildForm(): FormWithValidation {
     const validatedForm = new ValidatedForm(this.validatedControls);
     this.formValidationService.initialize(this.formGroup, this.controlErrorsMaps, validatedForm);
     const result = new FormWithValidation(this.formGroup, validatedForm);

@@ -1,8 +1,8 @@
-import { OpaqueTokens } from '../infrastructure';
+import { ValidatorProviderFactory } from '../provisioning/valdidator-provider-factory';
 import { MinLengthValidator } from '../services/validator-implementations';
 
 export class ValidatorProvider {
-  public provide = OpaqueTokens.APP_VALIDATOR_TOKEN;
+  public provide = ValidatorProviderFactory.APP_VALIDATOR_TOKEN;
   public multi = true;
 
   public static create(useClass: any): ValidatorProvider {

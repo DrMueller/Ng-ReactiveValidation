@@ -12,7 +12,7 @@ export class MinLengthValidator implements IValidator {
   }
 
   public get defaultErrorMessage(): string {
-    return 'Value is too small.';
+    return `Value is smaller than ${this._minLength}.`;
   }
 
   public initialize(...funcArgs: any[]) {

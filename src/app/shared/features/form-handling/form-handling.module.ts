@@ -2,10 +2,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FormValidationService, FormValidationHandler } from './form-validation';
+import { FormValidationService } from './form-validation';
 import { RxFormBuilder } from './form-building';
 import { ValidatorFactoryService } from './validators';
-import { OpaqueTokens } from './validators/infrastructure';
 import { ValidatorProviderFactory } from './validators/provisioning';
 
 import { FormValidationErrorDisplayComponent, FormControlComponent } from './form-validation/components';
@@ -21,12 +20,6 @@ import { FormValidationErrorDisplayComponent, FormControlComponent } from './for
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [
-    RxFormBuilder,
-    FormValidationService,
-    FormValidationHandler,
-    ValidatorFactoryService
-  ],
   declarations: [
     FormValidationErrorDisplayComponent,
     FormControlComponent
@@ -41,7 +34,6 @@ export class FormHandlingModule {
         ValidatorProviderFactory.create(),
         RxFormBuilder,
         FormValidationService,
-        FormValidationHandler,
         ValidatorFactoryService
       ]
     };

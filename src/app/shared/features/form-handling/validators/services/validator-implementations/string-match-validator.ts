@@ -1,7 +1,6 @@
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-import { IValidator } from '..';
-import { IValidatorFunctionResult } from '../../interfaces';
+import { IValidator, IValidatorFunctionResult } from '..';
 
 export class StringMatchValidator implements IValidator {
   public static key = 'stringmatch';

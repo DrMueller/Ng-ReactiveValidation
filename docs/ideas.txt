@@ -1,3 +1,1 @@
 Lint
-Default error values
-Dynamic design for the error warnings

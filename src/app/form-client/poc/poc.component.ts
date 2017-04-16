@@ -3,7 +3,7 @@ import { FormGroup, Validators, AbstractControl } from '@angular/forms';
 
 import {
   RxFormBuilder,
-  IFormWithValidation,
+  FormWithValidation,
   FormValidationService,
   ValidatorFactoryService
 } from '../../shared/features/form-handling';
@@ -14,7 +14,7 @@ import {
   styleUrls: ['./poc.component.css']
 })
 export class PocComponent implements OnInit {
-  public form: IFormWithValidation;
+  public form: FormWithValidation;
 
   constructor(
     private rxFormBuilder: RxFormBuilder,
@@ -25,6 +25,7 @@ export class PocComponent implements OnInit {
   private buildForm(): void {
     this.form = this.rxFormBuilder.startBuildingFormGroup(this.formValidationService)
       .withControl('nameIdentifierControl')
+      .withDefaultValue('test12345')
       .withValidation(this.validatoryFactory.minLenght(50))
       .withCustomErrorMessage('Min Length custom error message')
       .buildValidationKeyErrorMap()
