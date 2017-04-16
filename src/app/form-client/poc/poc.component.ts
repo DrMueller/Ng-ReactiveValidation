@@ -18,7 +18,6 @@ export class PocComponent implements OnInit {
   public form: IFormWithValidation;
 
   constructor(private rxFormBuilder: RxFormBuilder, private formValidationService: FormValidationService) {
-    this.buildForm();
   }
 
   private buildForm(): void {
@@ -70,6 +69,6 @@ export class PocComponent implements OnInit {
   // }
 
   ngOnInit() {
-    // this.buildForm();
+    this.buildForm();
   }
 }
