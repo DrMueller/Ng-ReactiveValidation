@@ -13,7 +13,8 @@ import { FormValidationErrorDisplayComponent, FormControlComponent } from './for
   exports: [
     FormControlComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FormValidationErrorDisplayComponent
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { ControlValidationErrorContainer } from '../../models';
+import { ValidatedControl } from '../../models';
 
 @Component({
   selector: 'app-form-validation-error-display',
@@ -8,7 +8,7 @@ import { ControlValidationErrorContainer } from '../../models';
   styleUrls: ['./form-validation-error-display.component.scss']
 })
 export class FormValidationErrorDisplayComponent implements OnInit {
-  @Input() public errorContainer: ControlValidationErrorContainer;
+  @Input() public validatedControl: ValidatedControl;
 
   constructor() { }
 

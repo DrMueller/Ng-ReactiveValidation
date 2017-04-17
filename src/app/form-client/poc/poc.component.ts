@@ -26,7 +26,7 @@ export class PocComponent implements OnInit {
     this.form = this.rxFormBuilder.startBuildingFormGroup(this.formValidationService)
       .withControl('nameIdentifierControl')
       .withDefaultValue('test12345')
-      .withValidation(this.validatoryFactory.minLenght(50))
+      .withValidation(this.validatoryFactory.minLenght(10))
       .withCustomErrorMessage('Min Length custom error message')
       .buildValidationKeyErrorMap()
       .withValidation(this.validatoryFactory.stringMatch('test1234'))
