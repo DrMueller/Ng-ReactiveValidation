@@ -7,14 +7,17 @@ import { AppComponent } from './app.component';
 import { FormClientModule } from './form-client';
 import { FormHandlingModule } from './shared/features/form-handling';
 
+    
+const formHandlingModule = FormHandlingModule.forRoot();
+
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
     BrowserModule,
+    formHandlingModule,
     FormClientModule,
-    FormHandlingModule.forRoot()
   ],
   providers: [
   ],
