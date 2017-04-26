@@ -27,12 +27,15 @@ import { FormValidationErrorDisplayComponent, FormControlComponent } from './for
   ]
 })
 
+
 export class FormHandlingModule {
   public static forRoot(): ModuleWithProviders {
+    const validatorProviders = ValidatorProviderFactory.create();
+
     return {
       ngModule: FormHandlingModule,
       providers: [
-        ValidatorProviderFactory.create(),
+        validatorProviders,
         RxFormBuilder,
         FormValidationService,
         ValidatorFactoryService

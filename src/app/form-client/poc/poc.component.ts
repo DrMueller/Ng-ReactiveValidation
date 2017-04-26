@@ -10,6 +10,7 @@ import {
 
 @Component({
   selector: 'app-poc',
+  providers: [FormValidationService],
   templateUrl: './poc.component.html',
   styleUrls: ['./poc.component.css']
 })
