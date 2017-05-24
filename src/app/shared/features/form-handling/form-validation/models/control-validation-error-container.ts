@@ -2,7 +2,6 @@ import { ValidationError } from '.';
 
 // Defines a collection of validation errors for a Control, used by the ValidatedControl-Model
 export class ControlValidationErrorContainer {
-  private static _nullObject = new ControlValidationErrorContainer();
   private _validationErrors: ValidationError[] = [];
 
   public get validationErrors(): ValidationError[] {
@@ -10,7 +9,7 @@ export class ControlValidationErrorContainer {
   }
 
   public static get nullObject(): ControlValidationErrorContainer {
-    return this._nullObject;
+    return new ControlValidationErrorContainer();
   }
 
   public setValidationErrors(validationErrors: ValidationError[]) {
